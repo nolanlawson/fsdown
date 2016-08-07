@@ -50,24 +50,6 @@
     "coverage": "istanbul cover ./node_modules/.bin/tape tests/*.js && istanbul check-coverage --lines 50 --function 50 --statements 50 --branches 50",
     "report-coverage": "npm run coverage && istanbul-coveralls --no-rm"
   },
-  "testling": {
-    "files": [
-      "tests/test.js"
-    ],
-    "browsers": [
-      "iexplore/8..latest",
-      "chrome/22..latest",
-      "chrome/canary",
-      "firefox/24..latest",
-      "firefox/nightly",
-      "opera/15..latest",
-      "opera/next",
-      "safari/5.0.5..latest",
-      "iphone/latest",
-      "ipad/latest",
-      "android-browser/latest"
-    ]
-  },
   "license": "MIT",
   "gypfile": false,
   "files": [
