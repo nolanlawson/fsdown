@@ -20,6 +20,20 @@ This project is intended for use with the [level eco-system](https://github.com/
 npm install fsdown
 ```
 
+## Usage
+
+You use this as you would any other "\*DOWN" implementation. Refer to [the leveldown docs](https://github.com/Level/leveldown) for details.
+
+There is an additional configuration offered, which is `directory`. `directory` allows you to specify a directory to write the JSON files to, else
+`.fsdown` is used.
+
+```js
+var levelup = require('levelup');
+var fsdown = require('fsdown');
+fsdown.directory = 'my_custom_directory'; // else '.fsdown'
+var db = levelup('my_db', {db: fsdown}); // will write to my_custom_directory/my_db.json
+```
+
 ## Tests
 
     npm test
