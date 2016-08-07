@@ -8,11 +8,11 @@
   ],
   "keywords": [
     "leveldb",
-    "localstorage",
+    "fs",
     "leveldown",
     "levelup"
   ],
-  "version": "0.6.6",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "dependencies": {
     "abstract-leveldown": "0.12.3",
@@ -20,6 +20,10 @@
     "d64": "^1.0.0",
     "humble-localstorage": "^1.4.2",
     "inherits": "^2.0.1",
+    "lodash.debounce": "^4.0.7",
+    "mkdirp": "^0.5.1",
+    "pouchdb-collections": "^1.0.1",
+    "sanitize-filename": "^1.6.0",
     "tiny-queue": "0.2.0"
   },
   "devDependencies": {
@@ -29,21 +33,20 @@
     "istanbul-coveralls": "^1.0.3",
     "jshint": "2.8.0",
     "levelup": "^0.18.2",
+    "rimraf": "^2.5.4",
     "tape": "^2.12.3",
     "zuul": "^3.10.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/no9/localstorage-down.git"
+    "url": "https://github.com/nolanlawson/fsdown.git"
   },
   "browser": {
     "bindings": false
   },
   "scripts": {
     "test": "npm run jshint && tape tests/*.js",
-    "test-saucelabs": "npm run jshint && zuul --no-coverage --ui tape --browser-name $BROWSER_NAME --browser-version $BROWSER_VERSION tests/*.js",
-    "test-zuul-local": "npm run jshint && zuul --no-coverage --ui tape --local tests/*.js",
-    "jshint": "jshint -c .jshintrc lib/*.js tests/*.js",
+    "jshint": "jshint -c .jshintrc lib tests",
     "coverage": "istanbul cover ./node_modules/.bin/tape tests/*.js && istanbul check-coverage --lines 50 --function 50 --statements 50 --branches 50",
     "report-coverage": "npm run coverage && istanbul-coveralls --no-rm"
   },
