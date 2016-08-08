@@ -18,7 +18,6 @@
     "abstract-leveldown": "0.12.3",
     "argsarray": "0.0.1",
     "d64": "^1.0.0",
-    "humble-localstorage": "^1.4.2",
     "inherits": "^2.0.1",
     "lodash.debounce": "^4.0.7",
     "mkdirp": "^0.5.1",
