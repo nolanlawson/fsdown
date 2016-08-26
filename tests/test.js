@@ -19,10 +19,9 @@ require('abstract-leveldown/abstract/iterator-test').all(localstorage, tape, tes
 
 require('abstract-leveldown/abstract/chained-batch-test').all(localstorage, tape, testCommon);
 require('abstract-leveldown/abstract/approximate-size-test').setUp(localstorage, tape, testCommon);
-require('abstract-leveldown/abstract/approximate-size-test').args(localstorage, tape, testCommon);
+require('abstract-leveldown/abstract/approximate-size-test').args(tape);
 
 require('abstract-leveldown/abstract/ranges-test').all(localstorage, tape, testCommon);
 require('abstract-leveldown/abstract/batch-test').all(localstorage, tape, testCommon);
 
 require('./custom-tests.js').all(localstorage, tape, testCommon);
-
