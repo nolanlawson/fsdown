@@ -2,11 +2,11 @@
 
 var dbidx = 0;
 var theLocation = function () {
-  return '_leveldown_test_db_' + dbidx++;
+  return '.fsdown/_leveldown_test_db_' + dbidx++;
 };
 
 var lastLocation = function () {
-  return '_leveldown_test_db_' + dbidx;
+  return '.fsdown/_leveldown_test_db_' + dbidx;
 };
 
 var cleanup = function (callback) {

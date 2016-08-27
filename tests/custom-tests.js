@@ -1,7 +1,7 @@
 'use strict';
 
 var levelup = require('levelup');
-  
+
 module.exports.setUp = function (leveldown, test, testCommon) {
   test('setUp common', testCommon.setUp);
   test('setUp db', function (t) {
@@ -15,8 +15,8 @@ module.exports.all = function (leveldown, tape, testCommon) {
   module.exports.setUp(leveldown, tape, testCommon);
 
   tape('test .destroy', function (t) {
-    var db = levelup('destroy-test', {db: leveldown});
-    var db2 = levelup('other-db', {db: leveldown});
+    var db = levelup('.fsdown/destroy-test', {db: leveldown});
+    var db2 = levelup('.fsdown/other-db', {db: leveldown});
     db2.put('key2', 'value2', function (err) {
       t.notOk(err, 'no error' );
       db.put('key', 'value', function (err) {
@@ -26,9 +26,9 @@ module.exports.all = function (leveldown, tape, testCommon) {
           t.equal(value, 'value', 'should have value');
           db.close(function (err) {
             t.notOk(err, 'no error');
-            leveldown.destroy('destroy-test', function (err) {
+            leveldown.destroy('.fsdown/destroy-test', function (err) {
               t.notOk(err, 'no error');
-              var db3 = levelup('destroy-test', {db: leveldown});
+              var db3 = levelup('.fsdown/destroy-test', {db: leveldown});
               db3.get('key', function (err, value) {
                 t.ok(err, 'key is not there');
                 db2.get('key2', function (err, value) {
@@ -45,9 +45,9 @@ module.exports.all = function (leveldown, tape, testCommon) {
   });
 
   tape('test .destroy with multiple dbs', function (t) {
-    var db = levelup('a', {db: leveldown});
-    var db2 = levelup('b', {db: leveldown});
-    var db3 = levelup('c', {db: leveldown});
+    var db = levelup('.fsdown/a', {db: leveldown});
+    var db2 = levelup('.fsdown/b', {db: leveldown});
+    var db3 = levelup('.fsdown/c', {db: leveldown});
     db.put('1', '1', function (err) {
       t.notOk(err, 'no error');
       db2.put('1', '1', function (err) {
@@ -58,12 +58,12 @@ module.exports.all = function (leveldown, tape, testCommon) {
             t.notOk(err, 'no error');
             db2.put('3', '3', function (err) {
               t.notOk(err, 'no error');
-              leveldown.destroy('b', function (err) {
+              leveldown.destroy('.fsdown/b', function (err) {
                 t.notOk(err, 'no error');
                 db3.get('1', function (err, res) {
                   t.notOk(err, 'no error');
                   t.equal(res, '1');
-                  db2 = levelup('b', {db: leveldown});
+                  db2 = levelup('.fsdown/b', {db: leveldown});
                   db2.get('3', function (err) {
                     t.ok(err);
                     t.end();
@@ -78,8 +78,8 @@ module.exports.all = function (leveldown, tape, testCommon) {
   });
 
   tape('test escaped db name', function (t) {
-    var db = levelup('bang!', {db: leveldown});
-    var db2 = levelup('bang!!', {db: leveldown});
+    var db = levelup('.fsdown/bang!', {db: leveldown});
+    var db2 = levelup('.fsdown/bang!!', {db: leveldown});
     db.put('!db1', '!db1', function (err) {
       t.notOk(err, 'no error');
       db2.put('db2', 'db2', function (err) {
@@ -88,7 +88,7 @@ module.exports.all = function (leveldown, tape, testCommon) {
           t.notOk(err, 'no error');
           db2.close(function (err) {
             t.notOk(err, 'no error');
-            db = levelup('bang!', {db: leveldown});
+            db = levelup('.fsdown/bang!', {db: leveldown});
             db.get('!db2', function (err, key, value) {
               t.ok(err, 'got error');
               t.equal(key, undefined, 'key should be null');
@@ -193,8 +193,8 @@ module.exports.all = function (leveldown, tape, testCommon) {
   });
 
   tape('iterate past end of db', function (t) {
-    var db = leveldown('aaaaaa');
-    var db2 = leveldown('bbbbbb');
+    var db = leveldown('.fsdown/aaaaaa');
+    var db2 = leveldown('.fsdown/bbbbbb');
     var noerr = function (err) {
       t.error(err, 'opens crrectly');
     };
@@ -223,7 +223,7 @@ module.exports.all = function (leveldown, tape, testCommon) {
   });
 
   tape('next() callback is dezalgofied', function (t) {
-    var db = leveldown('aaaaaa');
+    var db = leveldown('.fsdown/aaaaaa');
     var noerr = function (err) {
       t.error(err, 'opens crrectly');
     };
