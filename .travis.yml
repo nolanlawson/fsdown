@@ -1,13 +1,17 @@
+sudo: false
 language: node_js
 node_js:
 - "6"
 git:
   depth: 10
-sudo: false
+before_script:
+  - npm prune
 script: npm run $COMMAND
+after_success:
+  - npm run semantic-release
 env:
   matrix:
   - COMMAND=test
 branches:
-  only:
-  - master
+  except:
+    - /^v\d+\.\d+\.\d+$/

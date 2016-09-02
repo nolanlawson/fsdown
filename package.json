@@ -12,7 +12,6 @@
     "leveldown",
     "levelup"
   ],
-  "version": "1.0.1",
   "main": "lib/index.js",
   "dependencies": {
     "abstract-leveldown": "0.12.3",
@@ -31,15 +30,17 @@
     "jshint": "2.8.0",
     "levelup": "^0.18.2",
     "rimraf": "^2.5.4",
-    "tape": "^2.12.3"
+    "tape": "^2.12.3",
+    "semantic-release": "^6.3.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nolanlawson/fsdown.git"
+    "url": "https://github.com/nolanlawson/fsdown.git"
   },
   "scripts": {
     "test": "npm run jshint && tape tests/*.js",
-    "jshint": "jshint -c .jshintrc lib tests"
+    "jshint": "jshint -c .jshintrc lib tests",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "license": "MIT",
   "files": [
