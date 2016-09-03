@@ -49,5 +49,8 @@
     "url": "https://github.com/nolanlawson/fsdown/issues"
   },
   "homepage": "https://github.com/nolanlawson/fsdown#readme",
-  "author": "Nolan Lawson <nolan@nolanlawson.com>"
+  "author": "Nolan Lawson <nolan@nolanlawson.com>",
+  "abstract-leveldown": [
+    "abstract-leveldown"
+  ]
 }
