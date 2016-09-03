@@ -1,6 +1,6 @@
 'use strict';
-
 var levelup = require('levelup');
+var rimraf = require('rimraf');
 
 module.exports.setUp = function (leveldown, test, testCommon) {
   test('setUp common', testCommon.setUp);
@@ -253,5 +253,19 @@ module.exports.all = function (leveldown, tape, testCommon) {
       t.ok(!zalgoReleased2, 'zalgo not released (2)');
     });
     t.ok(!zalgoReleased, 'zalgo not released (1)');
+  });
+
+  tape('does not crash if write fails (#6)', function (t) {
+    var db = leveldown('.fsdown/foo/bar');
+    var noerr = function (err) {
+      t.error(err, 'opens crrectly');
+    };
+    var noop = function () {};
+    db.open(noerr);
+    db.put('a', 'A', noop);
+    rimraf.sync('.fsdown/foo');
+
+    t.pass('no crash');
+    t.end();
   });
 };
