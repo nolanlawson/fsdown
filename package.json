@@ -20,7 +20,7 @@
     "inherits": "^2.0.1",
     "lodash.debounce": "^4.0.7",
     "mkdirp": "^0.5.1",
-    "pouchdb-collections": "^1.0.1",
+    "pouchdb-collections": "^6.0.3",
     "sanitize-filename": "^1.6.0",
     "tiny-queue": "^0.2.1"
   },
