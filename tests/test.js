@@ -25,3 +25,4 @@ require('abstract-leveldown/abstract/ranges-test').all(localstorage, tape, testC
 require('abstract-leveldown/abstract/batch-test').all(localstorage, tape, testCommon);
 
 require('./custom-tests.js').all(localstorage, tape, testCommon);
+require('./persistence-tests.js').all(localstorage, tape, testCommon);
